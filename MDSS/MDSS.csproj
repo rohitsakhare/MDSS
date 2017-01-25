@@ -38,12 +38,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BasicFrame.WebControls.BasicDatePicker">
+      <HintPath>App_Data\BasicFrame.WebControls.BasicDatePicker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -97,6 +101,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="addPatient.aspx" />
+    <Content Include="ApplyAlgoForDiabetesDisease.aspx" />
+    <Content Include="ApplyAlgoForHeartDisease.aspx" />
     <Content Include="App_Data\ASPNETDB.MDF" />
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
@@ -111,6 +118,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\theme.css" />
+    <Content Include="DiabetesDisease.aspx" />
+    <Content Include="DiabetesDiseaseChart.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\121900825.jpg" />
     <Content Include="Images\bg.jpg" />
@@ -170,11 +179,14 @@
     <Content Include="Images\icons\user_edit.png" />
     <Content Include="Images\icons\world.png" />
     <Content Include="Images\il_fullxfull.115982086.jpg" />
+    <Content Include="Includes\header.ascx" />
+    <Content Include="Includes\right_menu.ascx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="WelcomeAdmin.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -223,6 +235,28 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addPatient.aspx.cs">
+      <DependentUpon>addPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addPatient.aspx.designer.cs">
+      <DependentUpon>addPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApplyAlgoForDiabetesDisease.aspx.cs">
+      <DependentUpon>ApplyAlgoForDiabetesDisease.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApplyAlgoForDiabetesDisease.aspx.designer.cs">
+      <DependentUpon>ApplyAlgoForDiabetesDisease.aspx</DependentUpon>
+    </Compile>
+    <Content Include="App_Code\TruncateTable.cs" />
+    <Compile Include="ApplyAlgoForHeartDisease.aspx.cs">
+      <DependentUpon>ApplyAlgoForHeartDisease.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApplyAlgoForHeartDisease.aspx.designer.cs">
+      <DependentUpon>ApplyAlgoForHeartDisease.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -246,8 +280,38 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DiabetesDisease.aspx.cs">
+      <DependentUpon>DiabetesDisease.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DiabetesDisease.aspx.designer.cs">
+      <DependentUpon>DiabetesDisease.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DiabetesDiseaseChart.aspx.cs">
+      <DependentUpon>DiabetesDiseaseChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DiabetesDiseaseChart.aspx.designer.cs">
+      <DependentUpon>DiabetesDiseaseChart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\ID3.cs" />
+    <Compile Include="App_Code\ID3Diabetes.cs" />
+    <Compile Include="Includes\header.ascx.cs">
+      <DependentUpon>header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Includes\header.ascx.designer.cs">
+      <DependentUpon>header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Includes\right_menu.ascx.cs">
+      <DependentUpon>right_menu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Includes\right_menu.ascx.designer.cs">
+      <DependentUpon>right_menu.ascx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -277,6 +341,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WelcomeAdmin.aspx.cs">
+      <DependentUpon>WelcomeAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WelcomeAdmin.aspx.designer.cs">
+      <DependentUpon>WelcomeAdmin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
